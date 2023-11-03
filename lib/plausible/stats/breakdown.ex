@@ -349,7 +349,9 @@ defmodule Plausible.Stats.Breakdown do
       group_by: e.pathname,
       select_merge: %{page: e.pathname},
       order_by: {:asc, e.pathname}
-    )
+    )|> do_group_by_pagename()
+
+
   end
 
   defp do_group_by(
@@ -556,6 +558,30 @@ defmodule Plausible.Stats.Breakdown do
       },
       order_by: {:asc, s.browser_version}
     )
+  end
+
+  defp do_group_by_pagename(query) do
+    prop = "pagename"
+    query =
+      if joins_table?(query, "meta") do
+        query
+      else
+        from(
+          e in query,
+          array_join: meta in fragment("meta"),
+          as: :meta
+        )
+      end
+
+
+    from(
+      [e, meta: meta] in query,
+      where: meta.key == ^prop,
+      group_by: meta.value,
+      select_merge: %{pagename: meta.value},
+      order_by: {:asc, meta.value}
+    )
+
   end
 
   defp sorting_key(metrics) do
