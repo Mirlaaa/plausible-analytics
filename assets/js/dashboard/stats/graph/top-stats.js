@@ -104,13 +104,23 @@ export default class TopStats extends React.Component {
 
   blinkingDot() {
     return (
-      <div key="dot" className="block pulsating-circle" style={{ left: '125px', top: '52px' }}></div>
+      <div key="dot" className="block pulsating-circle" style={{ left: '100px', top: '52px' }}></div>
     )
   }
 
   renderStatName(stat) {
     const { metric } = this.props
     const isSelected = metric === METRIC_MAPPING[stat.name]
+
+    const METRIC_TRANSLATED = {
+        'Current visitors': 'Visitantes',
+        'Unique visitors (last 30 min)': 'Visitantes Únicos (últimos 30 min)',
+        'Pageviews (last 30 min)': 'Visualizações (últimos 30 min)'
+    };
+
+    if(METRIC_TRANSLATED.hasOwnProperty(stat.name)){
+        stat.name = METRIC_TRANSLATED[stat.name]
+    }
 
     const [statDisplayName, statExtraName] = stat.name.split(/(\(.+\))/g)
 

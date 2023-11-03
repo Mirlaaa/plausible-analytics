@@ -4,11 +4,13 @@ import Money from "../behaviours/money"
 
 export const VISITORS_METRIC = {
   name: 'visitors',
-  label: 'Visitors',
-  realtimeLabel: 'Current visitors',
+  label: 'Visitantes',
+  realtimeLabel: 'Visitantes ativos',
   goalFilterLabel: 'Conversions',
   plot: true
 }
+export const PAGENAME_METRIC = { name: 'pagename', label: "Página"}
+export const PAGEVIEW_METRIC = { name: 'pageviews', label: "Visualizações"}
 export const PERCENTAGE_METRIC = { name: 'percentage', label: '%' }
 export const CR_METRIC = { name: 'conversion_rate', label: 'CR' }
 

@@ -12,7 +12,7 @@ import Devices from './stats/devices'
 import Behaviours from './stats/behaviours'
 import ComparisonInput from './comparison-input'
 import { withPinnedHeader } from './pinned-header-hoc';
-import { statsBoxClass } from '.';
+import { statsBoxClass, statsBoxClassPage } from '.';
 
 function Historical(props) {
   const tooltipBoundary = React.useRef(null)
@@ -38,10 +38,12 @@ function Historical(props) {
           <Sources site={props.site} query={props.query} />
         </div>
         <div className={ statsBoxClass }>
-          <Pages site={props.site} query={props.query} />
+          <Pages site={props.site} query={props.query} isSmallModal />
         </div>
       </div>
-
+      <div className={ statsBoxClassPage }>
+          <Pages site={props.site} query={props.query} isSmallModal={false}/>
+      </div>
       <div className="w-full md:flex">
         <div className={ statsBoxClass }>
           <Locations site={props.site} query={props.query} />
