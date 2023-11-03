@@ -66,9 +66,10 @@ class PagesModal extends React.Component {
         <td className="p-2">
           <Link to={{ pathname: `/${encodeURIComponent(this.props.site.domain)}`, search: query.toString() }} className="hover:underline block truncate">{trimURL(page.name, 50)}</Link>
         </td>
+        <td className="p-2 w-32 font-medium" align="right">{page.pagename}</td>
         {this.showConversionRate() && <td className="p-2 w-32 font-medium" align="right">{page.total_visitors}</td>}
         <td className="p-2 w-32 font-medium" align="right">{numberFormatter(page.visitors)}</td>
-        {this.showPageviews() && <td className="p-2 w-32 font-medium" align="right">{numberFormatter(page.pageviews)}</td>}
+        <td className="p-2 w-32 font-medium" align="right">{numberFormatter(page.pageviews)}</td>
         {this.showExtra() && <td className="p-2 w-32 font-medium" align="right">{this.formatBounceRate(page)}</td>}
         {this.showExtra() && <td className="p-2 w-32 font-medium" align="right">{timeOnPage}</td>}
         {this.showConversionRate() && <td className="p-2 w-32 font-medium" align="right">{page.conversion_rate}%</td>}
@@ -78,14 +79,14 @@ class PagesModal extends React.Component {
 
   label() {
     if (this.state.query.period === 'realtime') {
-      return 'Current visitors'
+      return 'Visitantes ativos'
     }
 
     if (this.showConversionRate()) {
       return 'Conversions'
     }
 
-    return 'Visitors'
+    return 'Visitantes'
   }
 
   renderLoading() {
@@ -106,19 +107,20 @@ class PagesModal extends React.Component {
     if (this.state.pages) {
       return (
         <React.Fragment>
-          <h1 className="text-xl font-bold dark:text-gray-100">Top Pages</h1>
+          <h1 className="text-xl font-bold dark:text-gray-100">Páginas em destaque</h1>
 
           <div className="my-4 border-b border-gray-300"></div>
           <main className="modal__content">
             <table className="w-max overflow-x-auto md:w-full table-striped table-fixed">
               <thead>
                 <tr>
-                  <th className="p-2 w-48 md:w-56 lg:w-1/3 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="left">Page url</th>
-                  {this.showConversionRate() && <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">Total visitors</th>}
+                  <th className="p-2 w-48 md:w-56 lg:w-1/3 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="left">URL</th>
+                  <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">Título</th>
+                  {this.showConversionRate() && <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">Visitantes Totais</th>}
                   <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">{this.label()}</th>
-                  {this.showPageviews() && <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">Pageviews</th>}
-                  {this.showExtra() && <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">Bounce rate</th>}
-                  {this.showExtra() && <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">Time on Page</th>}
+                  <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">Visualizações</th>
+                  {this.showExtra() && <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">Taxa Rejeição</th>}
+                  {this.showExtra() && <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">Tempo na página</th>}
                   {this.showConversionRate() && <th className="p-2 w-32 text-xs tracking-wide font-bold text-gray-500 dark:text-gray-400" align="right">CR</th>}
                 </tr>
               </thead>

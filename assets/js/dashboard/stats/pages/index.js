@@ -4,7 +4,7 @@ import * as storage from '../../util/storage'
 import * as url from '../../util/url'
 import * as api from '../../api'
 import ListReport from './../reports/list'
-import { VISITORS_METRIC, maybeWithCR } from './../reports/metrics';
+import { VISITORS_METRIC, PAGENAME_METRIC, PAGEVIEW_METRIC, maybeWithCR } from './../reports/metrics';
 
 function EntryPages({ query, site }) {
   function fetchData() {
@@ -23,7 +23,7 @@ function EntryPages({ query, site }) {
     <ListReport
       fetchData={fetchData}
       getFilterFor={getFilterFor}
-      keyLabel="Entry page"
+      keyLabel="URL"
       metrics={maybeWithCR([{ ...VISITORS_METRIC, label: 'Unique Entrances' }], query)}
       detailsLink={url.sitePath(site, '/entry-pages')}
       query={query}
@@ -50,7 +50,7 @@ function ExitPages({ query, site }) {
     <ListReport
       fetchData={fetchData}
       getFilterFor={getFilterFor}
-      keyLabel="Exit page"
+      keyLabel="URL"
       metrics={maybeWithCR([{ ...VISITORS_METRIC, label: "Unique Exits" }], query)}
       detailsLink={url.sitePath(site, '/exit-pages')}
       query={query}
@@ -60,7 +60,7 @@ function ExitPages({ query, site }) {
   )
 }
 
-function TopPages({ query, site }) {
+function TopPages({ query, site, isSmallModal }) {
   function fetchData() {
     return api.get(url.apiPath(site, '/pages'), query, { limit: 9 })
   }
@@ -72,17 +72,26 @@ function TopPages({ query, site }) {
   function getFilterFor(listItem) {
     return { page: listItem['name'] }
   }
-
+  function getMetricsForPage(){
+    let metrics;
+    if (!isSmallModal){
+        metrics = [PAGENAME_METRIC, VISITORS_METRIC, PAGEVIEW_METRIC];
+    }else{
+        metrics = [VISITORS_METRIC];
+    }
+    return metrics;
+  }
   return (
     <ListReport
       fetchData={fetchData}
       getFilterFor={getFilterFor}
-      keyLabel="Page"
-      metrics={maybeWithCR([VISITORS_METRIC], query)}
+      keyLabel="URL"
+      metrics={maybeWithCR(getMetricsForPage(), query)}
       detailsLink={url.sitePath(site, '/pages')}
       query={query}
       externalLinkDest={externalLinkDest}
       color="bg-orange-50"
+      colMinWidth={200}
     />
   )
 }
@@ -91,6 +100,12 @@ const labelFor = {
   'pages': 'Top Pages',
   'entry-pages': 'Entry Pages',
   'exit-pages': 'Exit Pages',
+}
+
+const labelForTranslated = {
+    'pages': 'Páginas em Alta',
+    'entry-pages': 'Páginas de Entrada',
+    'exit-pages': 'Páginas de Saída',
 }
 
 export default class Pages extends React.Component {
@@ -118,7 +133,7 @@ export default class Pages extends React.Component {
         return <ExitPages site={this.props.site} query={this.props.query} />
       case "pages":
       default:
-        return <TopPages site={this.props.site} query={this.props.query} />
+        return <TopPages site={this.props.site} query={this.props.query} isSmallModal={this.props.isSmallModal} />
     }
   }
 
@@ -152,12 +167,12 @@ export default class Pages extends React.Component {
         {/* Header Container */}
         <div className="w-full flex justify-between">
           <h3 className="font-bold dark:text-gray-100">
-            {labelFor[this.state.mode] || 'Page Visits'}
+            {labelForTranslated[this.state.mode] || 'Page Visits'}
           </h3>
           <div className="flex font-medium text-xs text-gray-500 dark:text-gray-400 space-x-2">
-            {this.renderPill('Top Pages', 'pages')}
-            {this.renderPill('Entry Pages', 'entry-pages')}
-            {this.renderPill('Exit Pages', 'exit-pages')}
+            {this.renderPill('Em Alta', 'pages')}
+            {this.renderPill('Páginas de Entrada', 'entry-pages')}
+            {this.renderPill('Páginas de Saída', 'exit-pages')}
           </div>
         </div>
         {/* Main Contents */}

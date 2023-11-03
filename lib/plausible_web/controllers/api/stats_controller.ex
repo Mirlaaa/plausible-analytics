@@ -421,13 +421,13 @@ defmodule PlausibleWeb.Api.StatsController do
 
     stats =
       [
-        top_stats_entry(current_results, prev_results, "Unique visitors", :visitors),
-        top_stats_entry(current_results, prev_results, "Total visits", :visits),
-        top_stats_entry(current_results, prev_results, "Total pageviews", :pageviews),
-        top_stats_entry(current_results, prev_results, "Views per visit", :views_per_visit),
-        top_stats_entry(current_results, prev_results, "Bounce rate", :bounce_rate),
-        top_stats_entry(current_results, prev_results, "Visit duration", :visit_duration),
-        top_stats_entry(current_results, prev_results, "Time on page", :time_on_page)
+        top_stats_entry(current_results, prev_results, "Visitantes Únicos", :visitors),
+        top_stats_entry(current_results, prev_results, "Visitas Totais", :visits),
+        top_stats_entry(current_results, prev_results, "Visualizações", :pageviews),
+        top_stats_entry(current_results, prev_results, "Visualizações p/ visita", :views_per_visit),
+        top_stats_entry(current_results, prev_results, "Taxa de Rejeição", :bounce_rate),
+        top_stats_entry(current_results, prev_results, "Duração da Visita", :visit_duration),
+        top_stats_entry(current_results, prev_results, "Tempo na página", :time_on_page)
       ]
       |> Enum.filter(& &1)
 
@@ -801,8 +801,8 @@ defmodule PlausibleWeb.Api.StatsController do
 
     metrics =
       if params["detailed"],
-        do: [:visitors, :pageviews, :bounce_rate, :time_on_page],
-        else: [:visitors]
+        do: [:visitors, :pageviews, :bounce_rate, :time_on_page, :pagename],
+        else: [:visitors, :pagename]
 
     pagination = parse_pagination(params)
 
@@ -1219,6 +1219,8 @@ defmodule PlausibleWeb.Api.StatsController do
     case Plausible.Billing.Feature.Props.check_availability(site.owner) do
       :ok ->
         props = breakdown_custom_prop_values(site, params)
+        IO.inspect("Props de custom props:")
+        IO.inspect(props)
         json(conn, props)
 
       {:error, :upgrade_required} ->
@@ -1256,10 +1258,16 @@ defmodule PlausibleWeb.Api.StatsController do
     pagination = parse_pagination(params)
     prefixed_prop = "event:props:" <> prop_key
 
+    IO.inspect("Prefixed prop")
+    IO.inspect(prefixed_prop)
+
     query =
       Query.from(site, params)
       |> Filters.add_prefix()
       |> Map.put(:include_imported, false)
+
+    IO.inspect("Query:")
+    IO.inspect(query)
 
     metrics =
       if Map.has_key?(query.filters, "event:goal") do
@@ -1361,8 +1369,8 @@ defmodule PlausibleWeb.Api.StatsController do
       |> Query.put_filter(filter_name, {:member, items})
       |> Query.remove_event_filters([:goal, :props])
 
-    # Here, we're always only interested in the first page of results 
-    # - the :member filter makes sure that the results always match with 
+    # Here, we're always only interested in the first page of results
+    # - the :member filter makes sure that the results always match with
     # the items in the given breakdown_results list
     pagination = {elem(pagination, 0), 1}
 

@@ -10,7 +10,7 @@ import Locations from './stats/locations'
 import Devices from './stats/devices'
 import Behaviours from './stats/behaviours'
 import { withPinnedHeader } from './pinned-header-hoc';
-import { statsBoxClass } from '.';
+import { statsBoxClass, statsBoxClassPage } from '.';
 
 class Realtime extends React.Component {
   render() {
@@ -36,6 +36,9 @@ class Realtime extends React.Component {
           <div className={ statsBoxClass }>
             <Pages site={this.props.site} query={this.props.query} />
           </div>
+        </div>
+        <div className={ statsBoxClassPage }>
+          <Pages site={this.props.site} query={this.props.query}/>
         </div>
         <div className="w-full md:flex">
           <div className={ statsBoxClass }>
