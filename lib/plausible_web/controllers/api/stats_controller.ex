@@ -1219,8 +1219,6 @@ defmodule PlausibleWeb.Api.StatsController do
     case Plausible.Billing.Feature.Props.check_availability(site.owner) do
       :ok ->
         props = breakdown_custom_prop_values(site, params)
-        IO.inspect("Props de custom props:")
-        IO.inspect(props)
         json(conn, props)
 
       {:error, :upgrade_required} ->
@@ -1258,16 +1256,10 @@ defmodule PlausibleWeb.Api.StatsController do
     pagination = parse_pagination(params)
     prefixed_prop = "event:props:" <> prop_key
 
-    IO.inspect("Prefixed prop")
-    IO.inspect(prefixed_prop)
-
     query =
       Query.from(site, params)
       |> Filters.add_prefix()
       |> Map.put(:include_imported, false)
-
-    IO.inspect("Query:")
-    IO.inspect(query)
 
     metrics =
       if Map.has_key?(query.filters, "event:goal") do
