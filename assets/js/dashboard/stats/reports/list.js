@@ -44,7 +44,7 @@ function ExternalLink({ item, externalLinkDest }) {
         target="_blank"
         rel="noreferrer"
         href={dest}
-        className="w-4 h-4 group-hover:block"
+        className="w-10 h-4 group-hover:block"
       >
         <svg className="inline w-full h-full ml-1 -mt-1 text-gray-600 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
       </a>
@@ -161,6 +161,15 @@ export default function ListReport(props) {
     }
   }
 
+  function justifyMetricValue(metric){
+    if (metric.justifyMetric != false){
+        console.log(metric.name)
+        return 'justify-center'
+    } else {
+      return ''
+    }   
+  }
+
   function renderReport() {
     if (state.list && state.list.length > 0) {
       return (
@@ -185,7 +194,7 @@ export default function ListReport(props) {
       return (
         <div
           key={metric.name}
-          className={`text-right ${hiddenOnMobileClass(metric)}`}
+          className={`text-center ${hiddenOnMobileClass(metric)}`}
           style={{ minWidth: colMinWidth }}
         >
           {metricLabelFor(metric, props.query)}
@@ -194,7 +203,7 @@ export default function ListReport(props) {
     })
 
     return (
-      <div className="pt-3 w-full text-xs font-bold tracking-wide text-gray-500 flex items-center dark:text-gray-400">
+      <div className="pt-3 w-full text-xs font-bold tracking-wide text-gray-500 flex dark:text-gray-400 gap-x-6">
         <span className="flex-grow truncate">{props.keyLabel}</span>
         {metricLabels}
       </div>
@@ -212,7 +221,7 @@ export default function ListReport(props) {
   function renderRow(listItem) {
     return (
       <div key={listItem.name} style={{ minHeight: ROW_HEIGHT}}>
-        <div className="flex w-full" style={{ marginTop: ROW_GAP_HEIGHT }}>
+        <div className="flex w-full gap-x-6" style={{ marginTop: ROW_GAP_HEIGHT }}>
           {renderBarFor(listItem)}
           {renderMetricValuesFor(listItem)}
         </div>
@@ -272,16 +281,19 @@ export default function ListReport(props) {
 
   function renderMetricValuesFor(listItem) {
     return getAvailableMetrics().map((metric) => {
+      const  dest = props.externalLinkDest && props.externalLinkDest(listItem)
+      console.log(`Porpsss ${dest}`)
       return (
         <div
           key={`${listItem.name}__${metric.name}`}
-          className={`text-right ${hiddenOnMobileClass(metric)} overflow-hidden`}
-          style={{ width: colMinWidth, minWidth: colMinWidth, height: 40}}
+          className={`text-right ${hiddenOnMobileClass(metric)}`}
+          style={ metric.name == 'pagename' ? {width: 300} : { width: colMinWidth, minWidth: colMinWidth}}
         >
-          <span className="font-medium text-sm dark:text-gray-200 text-right">
+          <span className={` ${justifyMetricValue(metric)} font-medium text-sm dark:text-gray-200 w-full flex`}>
             {displayMetricValue(listItem[metric.name], metric)}
+            {/* {metric.name == 'pagename' && dest && <ExternalLink item={listItem} externalLinkDest={props.externalLinkDest} />} */}
           </span>
-        </div>
+        </div>  
       )
     })
   }

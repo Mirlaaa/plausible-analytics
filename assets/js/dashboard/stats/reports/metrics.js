@@ -9,7 +9,7 @@ export const VISITORS_METRIC = {
   goalFilterLabel: 'Conversions',
   plot: true
 }
-export const PAGENAME_METRIC = { name: 'pagename', label: "Página"}
+export const PAGENAME_METRIC = { name: 'pagename', label: "Página", justifyMetric: false}
 export const PAGEVIEW_METRIC = { name: 'pageviews', label: "Visualizações", hiddenOnMobile: true}
 export const PERCENTAGE_METRIC = { name: 'percentage', label: '%' }
 export const CR_METRIC = { name: 'conversion_rate', label: 'CR' }
@@ -34,7 +34,7 @@ export function displayMetricValue(value, metric) {
   } else if (metric === CR_METRIC) {
     return `${value}%`
   } else {
-    return <span tooltip={value}>{ numberFormatter(value) }</span>
+    return <span className="md:truncate" tooltip={value}>{ numberFormatter(value) }</span>
   }
 }
 
