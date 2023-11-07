@@ -34,11 +34,11 @@ class Realtime extends React.Component {
             <Sources site={this.props.site} query={this.props.query} />
           </div>
           <div className={ statsBoxClass }>
-            <Pages site={this.props.site} query={this.props.query} />
+            <Pages site={this.props.site} query={this.props.query} isSmallModal/>
           </div>
         </div>
         <div className={ statsBoxClassPage }>
-          <Pages site={this.props.site} query={this.props.query}/>
+          <Pages site={this.props.site} query={this.props.query} isSmallModal={false}/>
         </div>
         <div className="w-full md:flex">
           <div className={ statsBoxClass }>

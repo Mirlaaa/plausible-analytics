@@ -10,7 +10,7 @@ export const VISITORS_METRIC = {
   plot: true
 }
 export const PAGENAME_METRIC = { name: 'pagename', label: "Página"}
-export const PAGEVIEW_METRIC = { name: 'pageviews', label: "Visualizações"}
+export const PAGEVIEW_METRIC = { name: 'pageviews', label: "Visualizações", hiddenOnMobile: true}
 export const PERCENTAGE_METRIC = { name: 'percentage', label: '%' }
 export const CR_METRIC = { name: 'conversion_rate', label: 'CR' }
 

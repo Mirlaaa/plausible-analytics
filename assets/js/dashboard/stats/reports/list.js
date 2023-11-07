@@ -211,7 +211,7 @@ export default function ListReport(props) {
 
   function renderRow(listItem) {
     return (
-      <div key={listItem.name} style={{ minHeight: ROW_HEIGHT }}>
+      <div key={listItem.name} style={{ minHeight: ROW_HEIGHT}}>
         <div className="flex w-full" style={{ marginTop: ROW_GAP_HEIGHT }}>
           {renderBarFor(listItem)}
           {renderMetricValuesFor(listItem)}
@@ -275,8 +275,8 @@ export default function ListReport(props) {
       return (
         <div
           key={`${listItem.name}__${metric.name}`}
-          className={`text-right ${hiddenOnMobileClass(metric)}`}
-          style={{ width: colMinWidth, minWidth: colMinWidth }}
+          className={`text-right ${hiddenOnMobileClass(metric)} overflow-hidden`}
+          style={{ width: colMinWidth, minWidth: colMinWidth, height: 40}}
         >
           <span className="font-medium text-sm dark:text-gray-200 text-right">
             {displayMetricValue(listItem[metric.name], metric)}
