@@ -62,7 +62,7 @@ function ExitPages({ query, site }) {
 
 function TopPages({ query, site, isSmallModal }) {
   function fetchData() {
-    return api.get(url.apiPath(site, '/pages'), query, { limit: 9 })
+    return api.get(url.apiPath(site, '/pages'), query, { limit: 40 })
   }
 
   function externalLinkDest(page) {
