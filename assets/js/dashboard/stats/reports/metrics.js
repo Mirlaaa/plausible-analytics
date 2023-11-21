@@ -34,7 +34,7 @@ export function displayMetricValue(value, metric) {
   } else if (metric === CR_METRIC) {
     return `${value}%`
   } else {
-    return <span className="md:truncate" tooltip={value}>{ numberFormatter(value) }</span>
+    return <span className="truncate" tooltip={value}>{ numberFormatter(value) }</span>
   }
 }
 

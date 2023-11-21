@@ -221,7 +221,7 @@ export default function ListReport(props) {
   function renderRow(listItem) {
     return (
       <div key={listItem.name} style={{ minHeight: ROW_HEIGHT}}>
-        <div className="flex w-full gap-x-6" style={{ marginTop: ROW_GAP_HEIGHT }}>
+        <div className="flex w-full gap-x-3" style={{ marginTop: ROW_GAP_HEIGHT }}>
           {renderBarFor(listItem)}
           {renderMetricValuesFor(listItem)}
         </div>
@@ -258,7 +258,7 @@ export default function ListReport(props) {
             <FilterLink filterQuery={getFilterQuery(listItem)} onClick={props.onClick || noop}>
               {maybeRenderIconFor(listItem)}
 
-              <span className="w-full md:truncate">
+              <span className="max-w-4 w-full truncate grow">
                 {trimURL(listItem.name, colMinWidth)}
               </span>
             </FilterLink>
@@ -282,7 +282,6 @@ export default function ListReport(props) {
   function renderMetricValuesFor(listItem) {
     return getAvailableMetrics().map((metric) => {
       const  dest = props.externalLinkDest && props.externalLinkDest(listItem)
-      console.log(`Porpsss ${dest}`)
       return (
         <div
           key={`${listItem.name}__${metric.name}`}
@@ -291,7 +290,7 @@ export default function ListReport(props) {
         >
           <span className={` ${justifyMetricValue(metric)} font-medium text-sm dark:text-gray-200 w-full flex`}>
             {displayMetricValue(listItem[metric.name], metric)}
-            {/* {metric.name == 'pagename' && dest && <ExternalLink item={listItem} externalLinkDest={props.externalLinkDest} />} */}
+            {metric.name == 'pagename' && dest && <ExternalLink item={listItem} externalLinkDest={props.externalLinkDest} />}
           </span>
         </div>  
       )

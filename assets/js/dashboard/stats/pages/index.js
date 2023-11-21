@@ -62,7 +62,7 @@ function ExitPages({ query, site }) {
 
 function TopPages({ query, site, isSmallModal }) {
   function fetchData() {
-    return api.get(url.apiPath(site, '/pages'), query, { limit: 9 })
+    return api.get(url.apiPath(site, '/pages'), query, { limit: 30 })
   }
 
   function externalLinkDest(page) {
@@ -75,7 +75,7 @@ function TopPages({ query, site, isSmallModal }) {
   function getMetricsForPage(){
     let metrics;
     if (!isSmallModal){
-        metrics = [PAGENAME_METRIC, VISITORS_METRIC, PAGEVIEW_METRIC];
+        metrics = [PAGENAME_METRIC, VISITORS_METRIC];
     }else{
         metrics = [VISITORS_METRIC];
     }
