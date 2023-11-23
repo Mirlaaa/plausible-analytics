@@ -286,7 +286,7 @@ export default function ListReport(props) {
         <div
           key={`${listItem.name}__${metric.name}`}
           className={`text-right ${hiddenOnMobileClass(metric)}`}
-          style={ metric.name == 'pagename' ? {width: 300} : { width: colMinWidth, minWidth: colMinWidth}}
+          style={ metric.name == 'pagename' ? {width: 350} : { width: colMinWidth, minWidth: colMinWidth}}
         >
           <span className={` ${justifyMetricValue(metric)} font-medium text-sm dark:text-gray-200 w-full flex`}>
             {displayMetricValue(listItem[metric.name], metric)}

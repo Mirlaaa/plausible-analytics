@@ -75,7 +75,7 @@ function TopPages({ query, site, isSmallModal }) {
   function getMetricsForPage(){
     let metrics;
     if (!isSmallModal){
-        metrics = [PAGENAME_METRIC, VISITORS_METRIC];
+        metrics = [PAGENAME_METRIC, VISITORS_METRIC, PAGEVIEW_METRIC];
     }else{
         metrics = [VISITORS_METRIC];
     }
@@ -91,7 +91,7 @@ function TopPages({ query, site, isSmallModal }) {
       query={query}
       externalLinkDest={externalLinkDest}
       color="bg-orange-50"
-      colMinWidth={200}
+      colMinWidth={150}
     />
   )
 }
