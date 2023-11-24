@@ -62,7 +62,7 @@ function ExitPages({ query, site }) {
 
 function TopPages({ query, site, isSmallModal }) {
   function fetchData() {
-    return api.get(url.apiPath(site, '/pages'), query, { limit: 9 })
+    return api.get(url.apiPath(site, '/pages'), query, { limit: 30 })
   }
 
   function externalLinkDest(page) {
@@ -91,7 +91,7 @@ function TopPages({ query, site, isSmallModal }) {
       query={query}
       externalLinkDest={externalLinkDest}
       color="bg-orange-50"
-      colMinWidth={200}
+      colMinWidth={150}
     />
   )
 }
