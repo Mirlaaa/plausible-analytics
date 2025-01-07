@@ -157,7 +157,7 @@ export default function SourceList(props) {
       {/* Header Container */}
       <div className="w-full flex justify-between">
         <h3 className="font-bold dark:text-gray-100">
-          Top Sources
+          Principais fontes
         </h3>
         {renderTabs()}
       </div>
