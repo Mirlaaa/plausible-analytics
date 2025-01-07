@@ -104,7 +104,7 @@ export default class TopStats extends React.Component {
 
   blinkingDot() {
     return (
-      <div key="dot" className="block pulsating-circle" style={{ left: '100px', top: '52px' }}></div>
+      <div key="dot" className="block pulsating-circle" style={{ left: '112px', top: '52px' }}></div>
     )
   }
 
@@ -128,7 +128,6 @@ export default class TopStats extends React.Component {
       'text-indigo-700 dark:text-indigo-500 border-indigo-700 dark:border-indigo-500': isSelected,
       'group-hover:text-indigo-700 dark:group-hover:text-indigo-500 border-transparent': !isSelected
     })
-
     return(
       <div className={statDisplayNameClass}>
         {statDisplayName}
@@ -148,13 +147,26 @@ export default class TopStats extends React.Component {
         'border-r lg:border-r-0': index % 2 === 0
       })
 
+      const valueAccess = 1300
+      // const valueAccess = this.topStatNumberShort(stat.name, stat.value)
+
       return (
           <Tooltip key={stat.name} info={this.topStatTooltip(stat, query)} className={className} onClick={() => { this.maybeUpdateMetric(stat) }} boundary={this.props.tooltipBoundary}>
             {this.renderStatName(stat)}
             <div className="my-1 space-y-2">
               <div>
                 <span className="flex items-center justify-between whitespace-nowrap">
-                  <p className="font-bold text-xl dark:text-gray-100" id={METRIC_MAPPING[stat.name]}>{this.topStatNumberShort(stat.name, stat.value)}</p>
+                  <p className="font-bold text-4xl dark:text-gray-100" id={METRIC_MAPPING[stat.name]}
+                   style={{ 
+                    color: stat.name === "Visitantes" 
+                      ? valueAccess >= 1300 
+                        ? "#2af800" 
+                        : valueAccess >= 1000 
+                          ? '#c1ff72' 
+                          : '#1e293b' 
+                      : '#1e293b' 
+                  }}
+                  >{valueAccess}</p>
                   <Maybe condition={!query.comparison}>
                     { this.renderPercentageComparison(stat.name, stat.change) }
                   </Maybe>

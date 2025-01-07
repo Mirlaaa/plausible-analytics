@@ -125,33 +125,33 @@ function DatePickerArrows({ site, query }) {
 function DisplayPeriod({ query, site }) {
   if (query.period === "day") {
     if (isToday(site, query.date)) {
-      return "Today";
+      return "Hoje";
     }
     return formatDay(query.date);
   } if (query.period === '7d') {
-    return 'Last 7 days'
+    return 'Ultimos 7 Dias'
   } if (query.period === '30d') {
-    return 'Last 30 days'
+    return 'Ultimos 30 Dias'
   } if (query.period === 'month') {
     if (isThisMonth(site, query.date)) {
-      return 'Month to Date'
+      return 'Do mês até a data'
     }
     return formatMonthYYYY(query.date)
   } if (query.period === '6mo') {
-    return 'Last 6 months'
+    return 'Últimos 6 meses'
   } if (query.period === '12mo') {
-    return 'Last 12 months'
+    return 'Últimos 12 meses'
   } if (query.period === 'year') {
     if (isThisYear(site, query.date)) {
-      return 'Year to Date'
+      return 'No acumulado do ano'
     }
     return formatYear(query.date)
   } if (query.period === 'all') {
-    return 'All time'
+    return 'Todos os tempos'
   } if (query.period === 'custom') {
     return formatDateRange(site, query.from, query.to)
   }
-  return 'Realtime'
+  return 'Tempo Real'
 }
 
 function DatePicker({ query, site, history }) {
@@ -319,23 +319,23 @@ function DatePicker({ query, site, history }) {
             font-medium text-gray-800 dark:text-gray-200 date-options"
           >
             <div className="py-1 border-b border-gray-200 dark:border-gray-500 date-option-group">
-              {renderLink("day", "Today", { keybindHint: 'D' })}
-              {renderLink("realtime", "Realtime", { keybindHint: 'R' })}
+              {renderLink("day", "Hoje", { keybindHint: 'D' })}
+              {renderLink("realtime", "Tempo Real", { keybindHint: 'R' })}
             </div>
             <div className="py-1 border-b border-gray-200 dark:border-gray-500 date-option-group">
-              {renderLink("7d", "Last 7 Days", { keybindHint: 'W' })}
-              {renderLink("30d", "Last 30 Days", { keybindHint: 'T' })}
+              {renderLink("7d", "Ultimos 7 Dias", { keybindHint: 'W' })}
+              {renderLink("30d", "Ultimos 30 Dias", { keybindHint: 'T' })}
             </div>
             <div className="py-1 border-b border-gray-200 dark:border-gray-500 date-option-group">
-              {renderLink('month', 'Month to Date', { keybindHint: 'M' })}
-              {renderLink('month', 'Last Month', { date: lastMonth(site) })}
+              {renderLink('month', 'Do mês até a data', { keybindHint: 'M' })}
+              {renderLink('month', 'Mês passado', { date: lastMonth(site) })}
             </div>
             <div className="py-1 border-b border-gray-200 dark:border-gray-500 date-option-group">
-              {renderLink("year", "Year to Date", { keybindHint: 'Y' })}
-              {renderLink("12mo", "Last 12 months", { keybindHint: 'L' })}
+              {renderLink("year", "No acumulado do ano", { keybindHint: 'Y' })}
+              {renderLink("12mo", "Últimos 12 meses", { keybindHint: 'L' })}
             </div>
             <div className="py-1 date-option-group">
-              {renderLink("all", "All time", { keybindHint: 'A' })}
+              {renderLink("all", "Todos os tempos", { keybindHint: 'A' })}
               <span
                 onClick={() => setMode('calendar')}
                 onKeyPress={() => setMode('calendar')}
@@ -348,7 +348,7 @@ function DatePicker({ query, site, history }) {
                 aria-expanded="false"
                 aria-controls="calendar"
               >
-                Custom Range
+                Faixa personalizada
                 <span className='font-normal'>C</span>
               </span>
             </div>
