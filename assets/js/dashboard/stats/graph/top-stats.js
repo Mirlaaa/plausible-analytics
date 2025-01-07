@@ -104,7 +104,7 @@ export default class TopStats extends React.Component {
 
   blinkingDot() {
     return (
-      <div key="dot" className="block pulsating-circle" style={{ left: '112px', top: '52px' }}></div>
+      <div key="dot" className="block pulsating-circle" style={{ left: '100px', top: '52px' }}></div>
     )
   }
 
@@ -147,8 +147,8 @@ export default class TopStats extends React.Component {
         'border-r lg:border-r-0': index % 2 === 0
       })
 
-      const valueAccess = 1300
-      // const valueAccess = this.topStatNumberShort(stat.name, stat.value)
+      const visitanteStat = topStatData.top_stats.find(stat => stat.name === "Visitantes");
+      const visitanteStatValue = visitanteStat?.value ?? 0
 
       return (
           <Tooltip key={stat.name} info={this.topStatTooltip(stat, query)} className={className} onClick={() => { this.maybeUpdateMetric(stat) }} boundary={this.props.tooltipBoundary}>
@@ -159,14 +159,14 @@ export default class TopStats extends React.Component {
                   <p className="font-bold text-4xl dark:text-gray-100" id={METRIC_MAPPING[stat.name]}
                    style={{ 
                     color: stat.name === "Visitantes" 
-                      ? valueAccess >= 1300 
+                      ? visitanteStatValue >= 1300 
                         ? "#2af800" 
-                        : valueAccess >= 1000 
+                        : visitanteStatValue >= 1000 
                           ? '#c1ff72' 
                           : '#1e293b' 
                       : '#1e293b' 
                   }}
-                  >{valueAccess}</p>
+                  >{this.topStatNumberShort(stat.name, stat.value)}</p>
                   <Maybe condition={!query.comparison}>
                     { this.renderPercentageComparison(stat.name, stat.change) }
                   </Maybe>
