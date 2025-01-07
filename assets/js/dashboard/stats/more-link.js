@@ -31,7 +31,7 @@ export default function MoreLink({url, site, list, endpoint, className, onClick}
           onClick={onClick}
         >
           { detailsIcon() }
-          DETAILS
+          DETALHES
         </Link>
       </div>
     )

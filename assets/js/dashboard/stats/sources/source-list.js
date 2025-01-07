@@ -41,7 +41,7 @@ function AllSources(props) {
     <ListReport
       fetchData={fetchData}
       getFilterFor={getFilterFor}
-      keyLabel="Source"
+      keyLabel="Fontes"
       metrics={maybeWithCR([VISITORS_METRIC], query)}
       detailsLink={url.sitePath(site, '/sources')}
       renderIcon={renderIcon}
@@ -93,11 +93,11 @@ export default function SourceList(props) {
     const activeClass = 'inline-block h-5 text-indigo-700 dark:text-indigo-500 font-bold active-prop-heading truncate text-left'
     const defaultClass = 'hover:text-indigo-600 cursor-pointer truncate text-left'
     const dropdownOptions = Object.keys(UTM_TAGS)
-    let buttonText = UTM_TAGS[currentTab] ? UTM_TAGS[currentTab].label : 'Campaigns'
+    let buttonText = UTM_TAGS[currentTab] ? UTM_TAGS[currentTab].label : 'Campanhas'
 
     return (
       <div className="flex text-xs font-medium text-gray-500 dark:text-gray-400 space-x-2">
-        <div className={currentTab === 'all' ? activeClass : defaultClass} onClick={setTab('all')}>All</div>
+        <div className={currentTab === 'all' ? activeClass : defaultClass} onClick={setTab('all')}>Todos</div>
 
         <Menu as="div" className="relative inline-block text-left">
           <div>

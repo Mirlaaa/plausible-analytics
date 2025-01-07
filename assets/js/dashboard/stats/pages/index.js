@@ -51,7 +51,7 @@ function ExitPages({ query, site }) {
       fetchData={fetchData}
       getFilterFor={getFilterFor}
       keyLabel="URL"
-      metrics={maybeWithCR([{ ...VISITORS_METRIC, label: "Unique Exits" }], query)}
+      metrics={maybeWithCR([{ ...VISITORS_METRIC, label: "Saídas Únicas" }], query)}
       detailsLink={url.sitePath(site, '/exit-pages')}
       query={query}
       externalLinkDest={externalLinkDest}

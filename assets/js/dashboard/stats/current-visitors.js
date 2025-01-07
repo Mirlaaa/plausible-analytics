@@ -30,8 +30,8 @@ export default class CurrentVisitors extends React.Component {
   tooltipInfo() {
     return (
       <div>
-        <p className="whitespace-nowrap text-small">Last updated <SecondsSinceLastLoad lastLoadTimestamp={this.props.lastLoadTimestamp} />s ago</p>
-        <p className="whitespace-nowrap font-normal text-xs">Click to view realtime dashboard</p>
+        <p className="whitespace-nowrap text-small">Última atualização <SecondsSinceLastLoad lastLoadTimestamp={this.props.lastLoadTimestamp} />s </p>
+        <p className="whitespace-nowrap font-normal text-xs">Clique para visualizar o painel em tempo real</p>
       </div>
     )
   }
@@ -47,7 +47,7 @@ export default class CurrentVisitors extends React.Component {
             <svg className="inline w-2 mr-1 md:mr-2 text-green-500 fill-current" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
               <circle cx="8" cy="8" r="8" />
             </svg>
-            {currentVisitors} <span className="hidden sm:inline-block">current visitor{currentVisitors === 1 ? '' : 's'}</span>
+            {currentVisitors} <span className="hidden sm:inline-block">visitantes atual</span>
           </Link>
         </Tooltip>
       )

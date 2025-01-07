@@ -308,7 +308,7 @@ export default function ListReport(props) {
   function renderNoDataYet() {
     return (
       <div className="w-full h-full flex flex-col justify-center" style={{ minHeight: `${MIN_HEIGHT}px` }}>
-        <div className="mx-auto font-medium text-gray-500 dark:text-gray-400">No data yet</div>
+        <div className="mx-auto font-medium text-gray-500 dark:text-gray-400">Nenhum dado ainda</div>
       </div>
     )
   }

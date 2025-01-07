@@ -158,14 +158,16 @@ export default class TopStats extends React.Component {
                 <span className="flex items-center justify-between whitespace-nowrap">
                   <p className="font-bold text-4xl dark:text-gray-100" id={METRIC_MAPPING[stat.name]}
                    style={{ 
-                    color: stat.name === "Visitantes" 
-                      ? visitanteStatValue >= 1300 
-                        ? "#2af800" 
-                        : visitanteStatValue >= 1000 
-                          ? '#c1ff72' 
-                          : '#1e293b' 
-                      : '#1e293b' 
-                  }}
+                      color: stat.name === "Visitantes" 
+                        ? visitanteStatValue >= 1700 
+                          ? "#db2831" 
+                          : visitanteStatValue >= 1300 
+                            ? "#036f16" 
+                            : visitanteStatValue >= 1000 
+                              ? '#01c123' 
+                              : '#1e293b' 
+                        : '#1e293b' 
+                    }}
                   >{this.topStatNumberShort(stat.name, stat.value)}</p>
                   <Maybe condition={!query.comparison}>
                     { this.renderPercentageComparison(stat.name, stat.change) }
