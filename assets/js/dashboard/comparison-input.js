@@ -9,10 +9,10 @@ import Flatpickr from 'react-flatpickr'
 import { parseNaiveDate, formatISO, formatDateRange } from './util/date.js'
 
 const COMPARISON_MODES = {
-  'off': 'Disable comparison',
-  'previous_period': 'Previous period',
-  'year_over_year': 'Year over year',
-  'custom': 'Custom period',
+  'off': 'Desativar comparação',
+  'previous_period': 'Período anterior',
+  'year_over_year': 'Ano após ano',
+  'custom': 'Período personalizado',
 }
 
 const DEFAULT_COMPARISON_MODE = 'previous_period'
@@ -98,13 +98,13 @@ function MatchDayOfWeekInput({ history, query, site }) {
   return <>
     <Menu.Item key="match_day_of_week" onClick={() => click(true)}>
       {({ active }) => (
-        <button className={buttonClass(active, query.match_day_of_week)}>Match day of the week</button>
+        <button className={buttonClass(active, query.match_day_of_week)}>Dia da semana</button>
       )}
     </Menu.Item>
 
     <Menu.Item key="match_exact_date" onClick={() => click(false)}>
       {({ active }) => (
-        <button className={buttonClass(active, !query.match_day_of_week)}>Match exact date</button>
+        <button className={buttonClass(active, !query.match_day_of_week)}>Data exata</button>
       )}
     </Menu.Item>
   </>

@@ -117,7 +117,7 @@ class EntryPagesModal extends React.Component {
     if (this.state.pages) {
       return (
         <>
-          <h1 className="text-xl font-bold dark:text-gray-100">Entry Pages</h1>
+          <h1 className="text-xl font-bold dark:text-gray-100">Páginas de entrada</h1>
 
           <div className="my-4 border-b border-gray-300"></div>
           <main className="modal__content">
