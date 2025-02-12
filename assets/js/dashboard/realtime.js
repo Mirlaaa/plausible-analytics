@@ -19,7 +19,7 @@ class Realtime extends React.Component {
     return (
       <div className="mb-12">
         <div id="stats-container-top"></div>
-        <div className={`${navClass} top-0 sm:py-3 py-2 z-10 ${this.props.stuck && !this.props.site.embedded ? 'fullwidth-shadow bg-gray-50 dark:bg-gray-850' : ''}`}>
+        <div className={`${navClass} top-0 sm:py-3 py-2 z-10 max-xs:hidden ${this.props.stuck && !this.props.site.embedded ? 'fullwidth-shadow bg-gray-50 dark:bg-gray-850 ' : ''}`}>
           <div className="items-center w-full flex">
             <div className="flex items-center w-full">
               <SiteSwitcher site={this.props.site} loggedIn={this.props.loggedIn} currentUserRole={this.props.currentUserRole} />
@@ -31,10 +31,10 @@ class Realtime extends React.Component {
         <VisitorGraph site={this.props.site} query={this.props.query} lastLoadTimestamp={this.props.lastLoadTimestamp} />
         <div className="w-full md:flex">
           <div className={ statsBoxClass }>
-            <Sources site={this.props.site} query={this.props.query} />
+            <Pages site={this.props.site} query={this.props.query} isSmallModal/>
           </div>
           <div className={ statsBoxClass }>
-            <Pages site={this.props.site} query={this.props.query} isSmallModal/>
+            <Sources site={this.props.site} query={this.props.query} />
           </div>
         </div>
         <div className={ statsBoxClassPage }>

@@ -114,7 +114,7 @@ export default class TopStats extends React.Component {
 
     const METRIC_TRANSLATED = {
         'Current visitors': 'Visitantes',
-        'Unique visitors (last 30 min)': 'Visitantes Únicos (últimos 30 min)',
+        'Unique visitors (last 30 min)': 'Visitantes [30 min]',
         'Pageviews (last 30 min)': 'Visualizações (últimos 30 min)'
     };
 
@@ -141,10 +141,10 @@ export default class TopStats extends React.Component {
 
     const stats = topStatData && topStatData.top_stats.map((stat, index) => {
 
-      const className = classNames('px-4 md:px-6 w-1/2 my-4 lg:w-auto group select-none', {
+      const className = classNames('px-4 max-xs:px-4 max-xs:py-2 max-xs:w-[174px] max-xs:my-0 md:px-6 w-1/2 my-4 lg:w-auto group select-none', {
         'cursor-pointer': this.canMetricBeGraphed(stat),
         'lg:border-l border-gray-300': index > 0,
-        'border-r lg:border-r-0': index % 2 === 0
+        'max-xs:border-none border-r lg:border-r-0': index % 2 === 0
       })
 
       const visitanteStat = topStatData.top_stats.find(stat => stat.name === "Visitantes");
@@ -168,7 +168,7 @@ export default class TopStats extends React.Component {
                               : '#1e293b' 
                         : '#1e293b' 
                     }}
-                  >{this.topStatNumberShort(stat.name, stat.value)}</p>
+                  >{stat.name === "Visitantes" ? visitanteStatValue : this.topStatNumberShort(stat.name, stat.value)}</p>
                   <Maybe condition={!query.comparison}>
                     { this.renderPercentageComparison(stat.name, stat.change) }
                   </Maybe>

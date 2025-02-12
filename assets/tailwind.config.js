@@ -21,6 +21,9 @@ module.exports = {
       padding: '1rem',
     },
     extend: {
+      screens: {
+        "max-xs": { max: "37.5rem" }, // Para telas menores que 30rem (480px)
+      },
       colors: {
         yellow: colors.amber, // We started usign `yellow` in v2 but it was renamed to `amber` in v3 https://tailwindcss.com/docs/upgrade-guide#removed-color-aliases
         gray: colors.slate,
