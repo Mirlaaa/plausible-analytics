@@ -30,15 +30,15 @@ class Realtime extends React.Component {
         </div>
         <VisitorGraph site={this.props.site} query={this.props.query} lastLoadTimestamp={this.props.lastLoadTimestamp} />
         <div className="w-full md:flex">
-          <div className={ statsBoxClassPage }>
-            <Pages site={this.props.site} query={this.props.query} isSmallModal={false}/>
-          </div>
           <div className={ statsBoxClass }>
             <Pages site={this.props.site} query={this.props.query} isSmallModal/>
           </div>
           <div className={ statsBoxClass }>
             <Sources site={this.props.site} query={this.props.query} />
           </div>
+        </div>
+        <div className={ statsBoxClassPage }>
+          <Pages site={this.props.site} query={this.props.query} isSmallModal={false}/>
         </div>
         <div className="w-full md:flex">
           <div className={ statsBoxClass }>
