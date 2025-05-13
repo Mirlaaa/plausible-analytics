@@ -60,7 +60,7 @@ defmodule Plausible.MixProject do
       {:bamboo_smtp, "~> 4.1"},
       {:bcrypt_elixir, "~> 3.0"},
       {:bypass, "~> 2.1", only: [:dev, :test]},
-      {:cachex, "~> 3.4"},
+      {:cachex, "~> 4.1"},
       {:ecto_ch, "~> 0.1.10"},
       {:combination, "~> 0.0.3"},
       {:connection, "~> 1.1", override: true},
